@@ -22,7 +22,7 @@ function FetchMovies({newInput}) {
 
     return (
         <>
-        {Object.keys(data).length !== 0 && ( //check data object has values before render
+        {data  && ( //check data object has values before render
             <>
                 <div>
                     <img src={data.Poster} alt={data.Title}></img>

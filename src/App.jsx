@@ -4,10 +4,11 @@ import FetchMovies from './components/FetchMovies'
 import InputForm from './components/InputForm'
 
 function App() {
-  const [movies, setMovies] = useState('');
+  const [movies, setMovies] = useState([]);
 
   const handleInputChange = (newMovie) => {
-    setMovies(newMovie)
+    const newArray = [newMovie, ...movies];
+    setMovies(newArray)
   };
 
 
@@ -16,7 +17,9 @@ function App() {
       <h1>Search A Film with OMDB</h1>
       <div>
       <InputForm onInputChange={handleInputChange}/>
-      <FetchMovies newInput ={movies} />
+
+      {!!movies.length && movies.map((title, index) => <FetchMovies key={index} newInput ={title} />)}
+      
       </div>
     </>
   )
