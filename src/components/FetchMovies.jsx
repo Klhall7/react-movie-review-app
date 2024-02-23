@@ -1,57 +1,57 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from 'react'
+import styles from "./movieCard.module.css";
 
-function FetchMovies({newInput}) {
-    const [data, setData] = useState('');
+function FetchMovies({ movieData }) {
+    console.log({ movieData });
 
-    const apiKey= 'beb9c843'
-
-    const fetchData = async () => {
-        if (!newInput)return; //return if user search is empty or undefined
-        const endpointUrl = `http://www.omdbapi.com/?t=${newInput}&apikey=${apiKey}`
-        const apiData = await fetch(endpointUrl).then(response => response.json());
-        setData(apiData)
+    function inputReview() {
+        console.log('review started')
     }
 
-        useEffect(() => { 
-        fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [newInput])
-
-    console.log("Data State:", data); 
-
     return (
+    //module stylesheet is applied to each rendered movie info
+    <div className={styles.root}>
+      {movieData && movieData !== typeof "string" ? ( //check data object has values before render
         <>
-        {data  && ( //check data object has values before render
-            <>
+            <div>
+                <img src={movieData.Poster} alt={movieData.Title} />
+            </div>
+            <section>
+                <h3>
+                <strong>{movieData.Title}</strong>
+                </h3>
+                <p>
+                {<strong>Released: </strong>} {movieData.Released}
+                </p>
+                <p>
+                {<strong>Plot: </strong>}
+                {movieData.Plot}
+                </p>
                 <div>
-                    <img src={data.Poster} alt={data.Title}></img>
+                <p>{<strong>Ratings: </strong>}</p>
+                {movieData.Ratings ? ( //condition to check for ratings
+                    <ul>
+                    {movieData.Ratings.map((rating, index) => (
+                        <li key={index}>
+                        {rating.Source}: {rating.Value}
+                        </li>
+                    ))}
+                    </ul>
+                ) : (
+                    <p>No Ratings Available</p>
+                )}
                 </div>
-                <p>{data.Title}</p>
-                <p>{<strong>Released: </strong>} {data.Released}</p>
-                <p>{<strong>Plot: </strong>}{data.Plot}</p>
-                <div>
-                    <p>{<strong>Ratings: </strong>}</p>
-                            {data.Ratings ? ( //condition to check for ratings
-                                <ul style={{ 
-                                    listStyle: 'none', 
-                                    display: 'flex', 
-                                    justifyContent: 'space-evenly'}}>
-                                        
-                                    {data.Ratings.map((rating, index) => (
-                                        <li key={index}>
-                                            {rating.Source}: {rating.Value}
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                <p>No ratings available.</p>
-                                )}
-                </div>
-                </>
-            )}
-        </>
-    )
+            </section>
+
+            <div>
+                <button onClick={inputReview}
+                type= 'button'
+                className="addReview">Leave a Review</button>
+            </div>
+            </>
+        ) : null}
+        </div>
+    );
 }
 
-export default FetchMovies
+export default FetchMovies;

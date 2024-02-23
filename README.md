@@ -9,7 +9,7 @@ This React app utilizes the OMDB API to search for movies and display their info
 ## Goals
 
 - Accept user input via a form that receives a movie title.
-- Search for that movie via the OMDB API Endpoint: http://www.omdbapi.com/?t=[some movie title]&apikey=[your api key]. You can change the endpoint if you would like to search by something other than the movie title.
+- Search for that movie via the OMDB API Endpoint: http://www.omdbapi.com/?t=[some movie title]&apikey=[your api key] You can change the endpoint if you would like to search by something other than the movie title.
 - Return that movies's information: 
     Movie poster
     Movie title
