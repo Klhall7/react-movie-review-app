@@ -14,19 +14,19 @@ function App() {
     const apiData = await fetch(endpointUrl).then((response) =>
       response.json()
     );
-    console.log(apiData);
+    console.log('fetch result', apiData);
     if (apiData.Response === "False") {
       window.alert(
         "Movie not found! :( It may not be available.\nPlease check your spacing and try again."
       );
       return;
     }
-    console.log("HERE");
+    console.log("Append above previous result and set to array");
     setMovies([apiData, ...movies]);
-    console.log({ movies });
+    console.log('previous array', { movies });
   };
 
-  console.log({ movies });
+  console.log('current array:', { movies });
 
   return (
     <>

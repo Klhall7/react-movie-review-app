@@ -1,8 +1,8 @@
 .root {
     background-color: rgba(0, 0, 0, 0.536);
-    max-width: 60vw;
+    max-width: 40vw;
     margin: 4vh;
-    display:flex;
+    /* display:flex; */
 
     li {
         list-style: none;
@@ -20,17 +20,18 @@
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+        align-items: center;
     }
 
     p strong {
         margin-right: 5px;
     }
-    
+
     img {
         padding-bottom: 1em;
-        margin-top: 1.5em ;
+        margin-top: 1.5em;
         max-width: 25vw;
-        height:auto;
+        height: auto;
     }
 
     section {
@@ -42,5 +43,12 @@
     section p {
         display: flex;
         justify-content: center;
+    }
+
+    button {
+        border: solid 2px darkslategray;
+        border-radius: 25px;
+        max-width: max-content;
+        margin: 10px;
     }
 }
